@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ramazan 2026 Plan Sistemi</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #1e293b;
+      --panel-soft: #334155;
+      --text: #f8fafc;
+      --accent: #22c55e;
+      --accent-2: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(circle at top right, #1e3a8a, var(--bg));
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.45;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    h1, h2, h3 { margin-top: 0; }
+    .badge {
+      display: inline-block;
+      background: rgba(34, 197, 94, 0.2);
+      border: 1px solid rgba(34, 197, 94, 0.6);
+      color: #dcfce7;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .card {
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 14px;
+      padding: 16px;
+      backdrop-filter: blur(3px);
+    }
+    ul { margin: 8px 0 0 18px; padding: 0; }
+    li + li { margin-top: 4px; }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 9px 12px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #052e16;
+      background: linear-gradient(120deg, #86efac, #22c55e);
+    }
+    button.secondary {
+      color: #082f49;
+      background: linear-gradient(120deg, #7dd3fc, #38bdf8);
+    }
+    .small {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+    .footer-note {
+      margin-top: 18px;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      opacity: 0.9;
+    }
+    .progress-wrap {
+      margin: 10px 0 20px;
+      background: rgba(51, 65, 85, 0.9);
+      border-radius: 999px;
+      height: 14px;
+      overflow: hidden;
+    }
+    .progress {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition: width 0.6s ease;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <span class="badge">Ramazan Planlayıcı • Gün 6 / 29</span>
+    <h1>24.02.2026'dan başlayan Ramazan sistemi</h1>
+    <p id="dayText" class="small"></p>
+    <div class="progress-wrap" aria-label="Ramazan ilerlemesi">
+      <div id="progress" class="progress"></div>
+    </div>
+
+    <section class="grid">
+      <article class="card">
+        <h2>Bu Gece Sahur Menü Önerisi (6. Gün)</h2>
+        <ul>
+          <li>Mercimek çorbası (az tuzlu, limonlu)</li>
+          <li>Yumurtalı sebzeli omlet</li>
+          <li>Tam buğday ekmeği + beyaz peynir + zeytin</li>
+          <li>Yoğurtlu yulaf ve ceviz</li>
+          <li>Bol su + hurma (2 adet)</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Yarın Akşam İftar Menü Önerisi (7. Gün)</h2>
+        <ul>
+          <li>Hurma ve su ile açılış</li>
+          <li>Ezogelin çorbası</li>
+          <li>Izgara tavuk / fırın sebze</li>
+          <li>Bulgur pilavı + mevsim salata</li>
+          <li>Güllaç (hafif porsiyon)</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h3>Sahur için Ayet (Mishary)</h3>
+        <p><strong>Bakara 2:183</strong> – “Ey iman edenler! Sizden öncekilere farz kılındığı gibi, size de oruç farz kılındı...”</p>
+        <div class="actions">
+          <button id="playSahur">Dinle (Mishary)</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>İftar için Ayet (Mishary)</h3>
+        <p><strong>Bakara 2:187</strong> – “...Fecrin beyaz ipliği siyah ipliğinden ayırt edilinceye kadar yiyin için...”</p>
+        <div class="actions">
+          <button id="playIftar">Dinle (Mishary)</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>Hadis Seçimi</h3>
+        <p id="hadithText"><strong>“Kim inanarak ve sevabını Allah’tan bekleyerek Ramazan orucunu tutarsa, geçmiş günahları bağışlanır.”</strong> (Buhârî, Savm 6; Müslim, Sıyâm 203)</p>
+        <div class="actions">
+          <button class="secondary" id="readHadith">Hadisi Sesli Dinle (TTS)</button>
+          <button id="stopAll">Durdur</button>
+        </div>
+        <p class="small">Not: Bu sürümde hadis seslendirme, tarayıcının Türkçe ses motoruyla yapılır.</p>
+      </article>
+    </section>
+
+    <p class="footer-note">Allah kabul etsin 🤲 – Bu plan 29 günlük Ramazan düzenine göre 6. günden başlatılmıştır.</p>
+  </main>
+
+  <script>
+    const startDate = new Date("2026-02-24T00:00:00");
+    const totalDays = 29;
+    const currentDay = 6;
+
+    const progress = document.getElementById("progress");
+    const dayText = document.getElementById("dayText");
+    progress.style.width = `${(currentDay / totalDays) * 100}%`;
+
+    dayText.textContent = `Başlangıç: ${startDate.toLocaleDateString("tr-TR")} • Toplam ${totalDays} gün • Bugün ${currentDay}. gün`;
+
+    const sahurAudio = new Audio("https://everyayah.com/data/Alafasy_128kbps/002183.mp3");
+    const iftarAudio = new Audio("https://everyayah.com/data/Alafasy_128kbps/002187.mp3");
+
+    function stopMedia() {
+      [sahurAudio, iftarAudio].forEach((a) => {
+        a.pause();
+        a.currentTime = 0;
+      });
+      window.speechSynthesis.cancel();
+    }
+
+    document.getElementById("playSahur").addEventListener("click", () => {
+      stopMedia();
+      sahurAudio.play();
+    });
+
+    document.getElementById("playIftar").addEventListener("click", () => {
+      stopMedia();
+      iftarAudio.play();
+    });
+
+    document.getElementById("readHadith").addEventListener("click", () => {
+      stopMedia();
+      const utterance = new SpeechSynthesisUtterance(document.getElementById("hadithText").innerText);
+      utterance.lang = "tr-TR";
+      utterance.rate = 0.95;
+      window.speechSynthesis.speak(utterance);
+    });
+
+    document.getElementById("stopAll").addEventListener("click", stopMedia);
+  </script>
+</body>
+</html>
