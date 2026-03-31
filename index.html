@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Palu Y.B.O. - Okul Bilgi Panosu</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg" alt="Türkiye Bayrağı" />
+    <div class="title-wrap">
+      <h1>Palu Yatılı Bölge Ortaokulu</h1>
+      <p>Okul Bilgi Panosu</p>
+    </div>
+    <img class="logo" src="https://upload.wikimedia.org/wikipedia/tr/thumb/e/e8/T%C3%BCrkiye_Cumhuriyeti_Mill%C3%AE_E%C4%9Fitim_Bakanl%C4%B1%C4%9F%C4%B1_logosu.svg/512px-T%C3%BCrkiye_Cumhuriyeti_Mill%C3%AE_E%C4%9Fitim_Bakanl%C4%B1%C4%9F%C4%B1_logosu.svg.png" alt="Palu YBO logosu" />
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>DERS PROGRAMLARI</h2>
+      <p class="info">Aşağıdaki tablolar görseldeki tüm sınıflar için sisteme eklenmiştir: 5A, 5B, 6A, 6B, 7A, 7B, 8A, 8B.</p>
+      <div id="programContainer" class="grid"></div>
+    </section>
+
+    <section class="card">
+      <h2>Ders Giriş / Çıkış Saatleri</h2>
+      <div class="time-grid">
+        <div>
+          <h3>Pazartesi - Perşembe</h3>
+          <table>
+            <thead>
+              <tr><th>Ders</th><th>Başlangıç</th><th>Bitiş</th></tr>
+            </thead>
+            <tbody id="weekdayTimes"></tbody>
+          </table>
+        </div>
+
+        <div>
+          <h3>Cuma (Manuel)</h3>
+          <p class="info">Cuma saatlerini aşağıdan manuel olarak düzenleyebilirsin.</p>
+          <table>
+            <thead>
+              <tr><th>Ders</th><th>Başlangıç</th><th>Bitiş</th></tr>
+            </thead>
+            <tbody id="fridayTimes"></tbody>
+          </table>
+          <button id="saveFriday">Cuma Saatlerini Kaydet</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
